@@ -7,9 +7,9 @@ Pod::Spec.new do |s|
     'gilad melamed' => 'gilad2.m@gmail.com'
   }
   s.license =  'Apache License, Version 2.0'
-  s.homepage = 'https://github.com/gilad-xtify/XtifyLib'
+  s.homepage = 'https://github.com/giladm/XtifyLib'
   s.source = {
-    :git => 'https://github.com/gilad-xtify/XtifyLib.git',
+    :git => 'https://github.com/giladm/XtifyLib.git',
     :tag => 'v2.60'
   }
 

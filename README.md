@@ -21,6 +21,7 @@ post_install do |installer|
 #define xDesiredLocationAccuracy kCLLocationAccuracyKilometer  // kCLLocationAccuracyBest
 #define xBadgeManagerMethod XLInboxManagedMethod
 #define xLogging TRUE
+#define xNewsstandContent FALSE
 #define xMultipleMarkets FALSE
 XTIFYGLOBAL_H
     File.open("Pods/XtifyLib/XtifyLib/XtifyGlobal.h", "w") do |file|
