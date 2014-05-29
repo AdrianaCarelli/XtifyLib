@@ -1,9 +1,15 @@
 //
 //     File: XRInboxDbInterface.h
-//  Xtify Library
+//  XtifyLib
 //
-//  Created by Gilad on 9/17/12.
-//  Copyright (c) 2012 Xtify. All rights reserved.
+//  Created by Gilad on 8/Jan/14.
+/*
+ * IBM Confidential
+ * OCO Source Materials
+ * 5725E28, 5725I03
+ * (c) Copyright IBM Corp. 2011, 2014.
+ * The source code for this program is not published or otherwise divested of its trade secrets, irrespective of what has been deposited with the U.S. Copyright Office. */
+//
 //
 //  Data model interface to Xtify Rich Inbox
 //
@@ -27,6 +33,12 @@
 
 - (void) setInboxUnreadMessageCount: (int) newCount;
 - (RichDbMessage *) addEmptyMid:(NSString *)pushMid ;
+- (NSString *) getInboxMessagesAsString ;
+- (NSString *) getMessageByMid:(NSString *)mid ;
+- (id) getDbMessageByMid:(NSString *)mid;
+- (void) removeExpiredMessages; // remove all expired message from data store
+- (NSString *) markMessageAsRead:(NSString *)mid; // mark message as read
+- (NSString *) deleteMessageMid:(NSString *)mid; // Delete a message by mid
 
 
 // Inbox TableViewController Interface
@@ -36,6 +48,4 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
 forRowAtIndexPath:(NSIndexPath *)indexPath;
 - (NSString *)iterateOverFectch ;
--(id) getDbMessageByMid:(NSString *)mid;
-- (void) removeExpiredMessages; // remove all expired message from data store
 @end

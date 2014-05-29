@@ -1,9 +1,16 @@
 //
-//  RichNotificationAppDelegate.h
-//  RichNotification
+//  AppDelegate.h
+//  Xtify Sample App
 //
 //  Created by Gilad on 2/22/11.
-//  Copyright 2011 Xtify. All rights reserved.
+/*
+ * Licensed Materials - Property of IBM
+ *
+ * 5725E28, 5725I03
+ *
+ * (c) Copyright IBM Corp. 2011, 2014
+ * US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ */
 //
 
 @class SettingViewController, AboutPage;

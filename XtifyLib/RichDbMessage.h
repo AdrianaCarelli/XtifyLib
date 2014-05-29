@@ -2,8 +2,15 @@
 //  RichDbMessage.h
 //  XtifyLib
 //
-//  Created by Gilad on 3/21/11.
-//  Copyright 2011 Xtify. All rights reserved.
+//  Created by Gilad on 2/22/11.
+/*
+ * Licensed Materials - Property of IBM
+ *
+ * 5725E28, 5725I03
+ *
+ * (c) Copyright IBM Corp. 2011, 2014
+ * US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ */
 //
 
 #import <CoreData/CoreData.h>
@@ -15,6 +22,8 @@
 }
 -(void) setFromJson:(XLRichJsonMessage *)xMessage ;
 -(void) updateMessage:(BOOL )value;
+
+- (NSString *) getMessageAsString ;
 
 @property (nonatomic, retain) NSString * subject;
 @property (nonatomic, retain) NSString * mid;

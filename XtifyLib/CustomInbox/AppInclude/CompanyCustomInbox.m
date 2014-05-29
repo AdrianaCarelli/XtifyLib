@@ -1,9 +1,14 @@
 //
 //  SampleCustomInbox.m
-//  Sample Custom Inbox
+//  XtifyLib
 //
-//  Created by Gilad on 9/14/12.
-//  Copyright (c) 2012 Xtify. All rights reserved.
+//  Created by Gilad on 8/Jan/14.
+/*
+ * IBM Confidential
+ * OCO Source Materials
+ * 5725E28, 5725I03
+ * (c) Copyright IBM Corp. 2011, 2014.
+ * The source code for this program is not published or otherwise divested of its trade secrets, irrespective of what has been deposited with the U.S. Copyright Office. */
 //
 
 #import "CompanyCustomInbox.h"
@@ -122,12 +127,13 @@ static CompanyCustomInbox* mSampleCustomInbox = nil;
 {
     XRInboxDbInterface *myParentViewController = [XRInboxDbInterface get];
     if ( myParentViewController !=nil ) {
-        NSLog(@"Successfully Got Pendingh Messages. Total messages=%d",[allInputMsgs count]);
+        NSLog(@"Successfully Got Pendingh Messages. Total messages=%lu",(unsigned long)[allInputMsgs count]);
         for (XLRichJsonMessage *inputMsg in allInputMsgs) {
             [myParentViewController addRichMessageToDb:inputMsg];
         }
         if (notifyToObject ) {
-            [notifyToObject didGetPendingResult:[allInputMsgs count]];
+            int pendingResult=(int) [allInputMsgs count];
+            [notifyToObject didGetPendingResult:pendingResult];
         }
     }
     

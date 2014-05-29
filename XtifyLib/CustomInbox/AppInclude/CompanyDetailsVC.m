@@ -1,9 +1,14 @@
 //
 //  XTDetailsVC.m
-//  Sample Custom Inbox
+//  XtifyLib
 //
-// Created by Gilad on 4/25/11.
-// Copyright 2011 Xtify. All rights reserved.
+//  Created by Gilad on 8/Jan/14.
+/*
+ * IBM Confidential
+ * OCO Source Materials
+ * 5725E28, 5725I03
+ * (c) Copyright IBM Corp. 2011, 2014.
+ * The source code for this program is not published or otherwise divested of its trade secrets, irrespective of what has been deposited with the U.S. Copyright Office. */
 //
 
 #import "CompanyDetailsVC.h"
@@ -76,8 +81,8 @@
 {
     UIToolbar *toolBar;
     self.title=[dbMessage subject];
-    UIDeviceOrientation dOrientation = [UIDevice currentDevice].orientation;
-    NSLog(@"dOrientation=%d",dOrientation);
+//    UIDeviceOrientation dOrientation = [UIDevice currentDevice].orientation;
+//    NSLog(@"dOrientation=%d",dOrientation);
     lastInterfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
     /* landscape -future
     if( UIInterfaceOrientationIsLandscape(lastInterfaceOrientation) )

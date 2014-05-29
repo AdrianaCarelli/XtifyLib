@@ -1,8 +1,15 @@
 //
 //  XLappMgr.h
+//  XtifyLib
 //
-//  Created by Gilad on 3/1/11.
-//  Copyright 2011 Xtify. All rights reserved.
+//  Created by Gilad on 8/Jun/11.
+/*
+ * IBM Confidential
+ * OCO Source Materials
+ * 5725E28, 5725I03
+ * (c) Copyright IBM Corp. 2011, 2014.
+ * The source code for this program is not published or otherwise divested of its trade secrets, irrespective of what has been deposited with the U.S. Copyright Office. */
+//
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
@@ -14,7 +21,6 @@
 @class XLServerMgr,XLInboxMgr;
 @class UIApplication ;
 @class xASIHTTPRequest;
-//@class XLXtifyOptions;
 
 @interface XLappMgr : NSObject
 {
@@ -52,7 +58,6 @@
 - (void) initilizeXoptions:(XLXtifyOptions *)xOptions;
 -(void) registerForPush ;
 
-//-(void) launchWithOptions:(UIApplication *)application andOptions:(NSDictionary *)launchOptions; DEPRECATED
 -(void) registerWithXtify:(NSData *)devToken ;
 // 
 - (void) doXtifyRegistration:(NSString*) newAppKey;
@@ -66,7 +71,6 @@
 -(void) appEnterBackground;
 -(void) appEnterActive;
 -(void) appEnterForeground;
-//-(void) appReceiveNotification:(NSDictionary *)userInfo;
 
 -(void) updateLocDate:(NSDate *)updateDate;
 

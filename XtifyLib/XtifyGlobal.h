@@ -1,12 +1,18 @@
 //
 // XtifyGlobal.h
+//  XtifyLib
 //
+//  Created by Gilad on 8/Jun/11
+/*
+ * IBM Confidential
+ * OCO Source Materials
+ * 5725E28, 5725I03
+ * (c) Copyright IBM Corp. 2011, 2014.
+ * The source code for this program is not published or otherwise divested of its trade secrets, irrespective of what has been deposited with the U.S. Copyright Office. */
 //
-// Created by Gilad on 4/25/11.
-// Copyright 2011 Xtify. All rights reserved.
 //
 // For help, visit: http://developer.xtify.com
-//xSdkVer				@"v2.51" // internal xtify sdk version
+//xSdkVer				@"v2.60" // internal xtify sdk version
 
 
 // Xtify AppKey
@@ -26,10 +32,10 @@
 
 // Background location update
 //
-// Set this to TRUE if you want to also send location updates on significant change to Xtify while the app is in the background.
+// Set this to TRUE if you want to also send location updates on significant change to Xtify while the app is in the background. 
 // Set this to FALSE if you want to send location updates on significant change to Xtify while the app is in the foreground only.
 
-#define xRunAlsoInBackground FALSE
+#define xRunAlsoInBackground FALSE 
 
 // Desired location accuracy
 //
@@ -39,20 +45,26 @@
 // For a detailed description about these options, please visit the Apple Documentation at the url:
 // http://developer.apple.com/library/ios/#documentation/CoreLocation/Reference/CLLocationManager_Class/CLLocationManager/CLLocationManager.html
 
-#define xDesiredLocationAccuracy kCLLocationAccuracyKilometer  // kCLLocationAccuracyBest
+#define xDesiredLocationAccuracy kCLLocationAccuracyKilometer  // kCLLocationAccuracyBest 
 
 // Badge management
-//
+// 
 // Set to XLInboxManagedMethod to let the Xtify SDK manage the badge count on the client and the server
 // Set to XLDeveloperManagedMethod if you want to handle updating the badge on the client and server (you'll need to create your own method)
 // We've included an example on how to set/update the badge in the main delegate file within our sample apps
 
-#define xBadgeManagerMethod XLInboxManagedMethod
+#define xBadgeManagerMethod XLInboxManagedMethod 
 
-// Logging Flag
+// Logging Flag 
 //
 // To turn on logging change xLogging to true
 #define xLogging TRUE
+
+// Newsstand Content Notification Type
+//
+// Set to true to let UIRemoteNotificationTypeNewsstandContentAvailability in Apple push registration
+// If set to true, badge count doesn't change from push payload
+#define xNewsstandContent FALSE
 
 // This is a premium feature that supports a regional control of messaging by multiple user governed by one primary organization account. Suitable for organizations that have multiple geographical regions or franchise business models. This feature will only work with Enterprise accounts. Please inquire with Xtify to enable this feature.
 

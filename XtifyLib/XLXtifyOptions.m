@@ -1,9 +1,14 @@
 //
 //  XLXtifyOptions.m
-//  XtifyPush Library
+//  XtifyLib
 //
-//  Created by Gilad on 5/11/12.
-//  Copyright (c) 2012 Xtify. All rights reserved.
+//  Created by Gilad on 8/Jan/12
+/*
+ * IBM Confidential
+ * OCO Source Materials
+ * 5725E28, 5725I03
+ * (c) Copyright IBM Corp. 2011, 2014.
+ * The source code for this program is not published or otherwise divested of its trade secrets, irrespective of what has been deposited with the U.S. Copyright Office. */
 //
 
 #import "XLXtifyOptions.h"
@@ -29,6 +34,7 @@ static  XLXtifyOptions *xXtifyOptions=nil;
         xoBackgroundLocationRequired=xRunAlsoInBackground ;
         xoLogging =xLogging ;
         xoMultipleMarkets=xMultipleMarkets;
+        xoNewsstandContent =xNewsstandContent ;
         xoManageBadge=xBadgeManagerMethod;
         xoDesiredLocationAccuracy =xDesiredLocationAccuracy ;
     }
@@ -55,6 +61,11 @@ static  XLXtifyOptions *xXtifyOptions=nil;
 {
     return xoMultipleMarkets;
 }
+- (BOOL) isNewsstandContent
+{
+    return xoNewsstandContent;
+}
+
 - (XLBadgeManagedType)  getManageBadgeType
 {
     return xoManageBadge;

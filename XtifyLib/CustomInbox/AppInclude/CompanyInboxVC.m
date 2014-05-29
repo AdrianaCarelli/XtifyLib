@@ -1,9 +1,14 @@
 //
 //  CompanyInboxVC.m
-//  XtifyPad
+//  XtifyLib
 //
-//  Created by gilad on 10/20/12.
-//
+//  Created by Gilad on 9/19/12.
+/*
+ * IBM Confidential
+ * OCO Source Materials
+ * 5725E28, 5725I03
+ * (c) Copyright IBM Corp. 2011, 2014.
+ * The source code for this program is not published or otherwise divested of its trade secrets, irrespective of what has been deposited with the U.S. Copyright Office. */
 //
 
 #import "CompanyInboxVC.h"

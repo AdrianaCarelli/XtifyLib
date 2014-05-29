@@ -1,11 +1,15 @@
 //
 //  CompanyCustomInbox.h
-//  Sample Custom Inbox
+//  XtifyLib
 //
-//  Created by Gilad on 9/14/12.
-//  Copyright (c) 2012 Xtify. All rights reserved.
+//  Created by Gilad on 8/Jan/14.
+/*
+ * IBM Confidential
+ * OCO Source Materials
+ * 5725E28, 5725I03
+ * (c) Copyright IBM Corp. 2011, 2014.
+ * The source code for this program is not published or otherwise divested of its trade secrets, irrespective of what has been deposited with the U.S. Copyright Office. */
 //
-//  Company who wish to customize their Inbox, would implement this or similar class.
 
 #import <UIKit/UIKit.h>
 

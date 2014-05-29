@@ -1,9 +1,16 @@
 //
-//  Rich Notification AppDelegate.m
-//  RichNotification
+//  AppDelegate.m
+//  Xtify Sample App
 //
 //  Created by Gilad on 2/22/11.
-//  Copyright 2011 Xtify. All rights reserved.
+/*
+ * Licensed Materials - Property of IBM
+ *
+ * 5725E28, 5725I03
+ *
+ * (c) Copyright IBM Corp. 2011, 2014
+ * US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ */
 //
 
 #import "SampleTabsAppDelegate.h"
@@ -14,6 +21,7 @@
 #import "CompanyDetailsVC.h"
 #import "CompanyCustomInbox.h"
 #import "CompanyInboxVC.h"
+#import "CompanyInboxHandler.h"
 #import "XLCustomInboxMgr.h"
 #import "RichDbMessage.h"
 
@@ -48,6 +56,7 @@
 	if (self = [super init]) {
         
         XLXtifyOptions *anXtifyOptions=[XLXtifyOptions getXtifyOptions];
+
         [[XLappMgr get ]initilizeXoptions:anXtifyOptions];
 		// Examples how to receive events from Xtify SDK to your delegate
 		
@@ -55,13 +64,12 @@
 		[[XLappMgr get] setInboxDelegate:self];
 		[[XLappMgr get] setDeveloperNavigationControllerSelector:@selector(developerNavigationController:)];
 		[[XLappMgr get] setDeveloperInboxNavigationControllerSelector:@selector(moveToInbox:)];
-		[[XLappMgr get] setDeveloperXidNotificationSelector:@selector(doUpdateXid:)];
+		[[XLappMgr get] setDeveloperXidNotificationSelector:@selector(xidHasChanged:)];
 		[[XLappMgr get] setDeveloperRegistrationFailureSelector:@selector(failedRegistration:)];
 		[[XLappMgr get] setDeveloperRegisterNotificationSelector:@selector(completeRegistration:)];
 		[[XLappMgr get] setDeveloperLocationUpdatSelector:@selector(locationUpdateCompleted:)];
 
         [[CompanyCustomInbox get] setCallbackSelectors:@selector(successfullyGotRichMessage:) failSelector:@selector(failedToGetRichMessage:) andDelegate:self];
-
  	}
 	return self;
 }
@@ -72,7 +80,6 @@
 {
 	NSLog(@"Succeeded registering for push notifications. Device token: %@", devToken);
 	[[XLappMgr get] registerWithXtify:devToken ];
-	
 }
 
 
@@ -88,7 +95,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
 	NSLog(@"Application moved from inactive to Active state");
-	[[XLappMgr get] appEnterActive];
+    [[XLappMgr get] appEnterActive];
 }
 
 // Add or incorporate this function in your app delegate file
@@ -120,6 +127,7 @@
     {
         [[XLappMgr get] handleSignificantLocation:application andOptions:launchOptions];
     }
+
     return YES;
 	
 }
@@ -186,10 +194,29 @@
         return ;
     }
     // Handle simple Push
-    [[XLappMgr get]    setBadgeCountSpringBoardAndServer:0];
+    
+    [[XLappMgr get] removeAllNotifications]; //  clear notification center
+//    [[XLappMgr get]    setBadgeCountSpringBoardAndServer:0];
     [self handleSimplePush:aPush withAlert:withAlert];
 }
-       
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler
+{
+    NSLog(@"iOS 7 App got Push Notification. userInfo=%@", userInfo);
+    NSDictionary *aps=[userInfo objectForKey:@"aps"];
+    id alert=[aps objectForKey:@"alert"];
+    if (alert && [alert isKindOfClass:[NSDictionary class]]) {
+        NSLog(@"Handle push with Alert");
+        [self handleAnyNotification:userInfo];
+        return ;// no background content with alert
+    }
+    NSLog(@"Handle push for content-available background process");
+    // Place your background process here.
+    // ...
+    // When completed, notify handler on success.
+    handler(UIBackgroundFetchResultNewData);
+}
+
 -(void)applicationWillTerminate:(UIApplication *)application
 {
 	NSLog(@"applicationWillTerminate");
@@ -281,7 +308,22 @@
 
 #pragma mark -
 #pragma mark Custom Inbox
-
+- (void) getInboxContent
+{
+    // Customized Inbox
+    CompanyInboxHandler *inboxHandler = [[CompanyInboxHandler alloc] init];
+    XRInboxDbInterface *xInboxInterface = [XRInboxDbInterface get];
+    if ( xInboxInterface !=nil ) {
+        [xInboxInterface updateParentVCandDB:inboxHandler];
+        
+        NSString *messages=[xInboxInterface getInboxMessagesAsString];
+        NSLog(@"messages=%@",messages);
+// Test
+        NSString *message =[xInboxInterface getMessageByMid:@"U8Bw5rB"];
+        NSLog(@"A message=%@",message);
+    }
+    
+}
 - (void) successfullyGotRichMessage:(XLRichJsonMessage *)inputMsg
 {
     XRInboxDbInterface *xInboxInterface = [XRInboxDbInterface get];
@@ -352,7 +394,7 @@
 - (void) doMyUpdate:(XLappMgr *)appM
 {
 	NSInteger newBadge=[appM getInboxUnreadMessageCount];
-	NSLog(@"The new inbox badge unread message count is=%d",newBadge);
+	NSLog(@"The new inbox badge unread message count is=%ld",(long)newBadge);
     
     // Set a private count of notifications
 	NSInteger privateCounter=0 ;
@@ -360,18 +402,18 @@
 	[appM setServerBadgeCount:newBadge];
 }
 
-- (void) doUpdateXid:(XLappMgr *)appM
+- (void) xidHasChanged:(XLappMgr *)appM
 {
-	NSLog(@"Got XID=%@",[appM getXid]);
+	NSLog(@"Got a new XID=%@",[appM getXid]);
 }
 
 - (void) failedRegistration:(int)httpStatusCode
 {
 	NSLog(@"Failed to Registrat with httpStatusCode=%d",httpStatusCode);
 }
-- (void) completeRegistration:(XLappMgr *)appM
+- (void) completeRegistration:(XLappMgr *)appMgr
 {
-	NSLog(@"Complete Registration with httpStatusCode=%@",[appM getXid]);
+	NSLog(@"Complete Registration and XID is=%@",[appMgr getXid]);
 // registration is complete and xid is available
 }
 
@@ -450,6 +492,7 @@
         [prodName release];
     }
     // Handle simple Push
+    /* if you wish to save simple push as rich you can do something like this:
     XLRichJsonMessage *inputSimple=[[XLRichJsonMessage alloc]init];
     [inputSimple setContent:@"(This Message has No Content)"];
     [inputSimple setSubject:body];
@@ -460,6 +503,7 @@
     NSString *isoDate = [dateFormatter stringFromDate:[NSDate date]];
     [inputSimple setDate:isoDate];
     [self successfullyGotRichMessage:inputSimple];
+     */
     // end handle simple push
 
 }
@@ -469,9 +513,15 @@
 // this is the application which puts the message
 - (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    NSLog(@"Take some Action");
+	if (buttonIndex == 1) { // user select open
+        NSLog(@"user clicks open simple");
+	}
+	else // user selected cancel
+	{
+        NSLog(@"user clicks cancel");
+		
+	}
 }
-
 #pragma mark -
 #pragma mark Using simulator
 
