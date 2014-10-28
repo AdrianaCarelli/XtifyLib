@@ -36,11 +36,22 @@ static  XLXtifyOptions *xXtifyOptions=nil;
         xoMultipleMarkets=xMultipleMarkets;
         xoNewsstandContent =xNewsstandContent ;
         xoManageBadge=xBadgeManagerMethod;
+        xoGeofenceEnabled =xGeofenceEnabled ;
+        xoBeaconSupport=xBeaconSupport;
+        xoUUID=xUUID;
         xoDesiredLocationAccuracy =xDesiredLocationAccuracy ;
     }
     return self;
 }
 
+-(BOOL)isBeaconSupportEnabled
+{
+    return xoBeaconSupport;
+}
+- (NSString *)getUUID
+{
+    return xoUUID;
+}
 - (NSString *)getAppKey
 {
     return xoAppKey;
@@ -66,6 +77,11 @@ static  XLXtifyOptions *xXtifyOptions=nil;
     return xoNewsstandContent;
 }
 
+- (BOOL) isGeofenceEnabled
+{
+    return xoGeofenceEnabled;
+}
+
 - (XLBadgeManagedType)  getManageBadgeType
 {
     return xoManageBadge;
@@ -83,4 +99,31 @@ static  XLXtifyOptions *xXtifyOptions=nil;
     }
     va_end(args);
 }
+
+-(void) registerForPush
+{
+    [self xtLogMessage:XTLOG content:@"Attempt to register for push notifications..."];
+    
+    UIApplication * app = [UIApplication sharedApplication];
+#if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_7_1
+    
+    if([app respondsToSelector:@selector(registerForRemoteNotifications)])
+    {
+        UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+        UIUserNotificationSettings * settings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+        [app registerUserNotificationSettings: settings];
+        [app registerForRemoteNotifications];
+    }
+    else
+    {
+#endif
+        UIRemoteNotificationType types = UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound |UIRemoteNotificationTypeAlert;
+        if ([[XLXtifyOptions getXtifyOptions] isNewsstandContent])
+            types = UIRemoteNotificationTypeNewsstandContentAvailability | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound |UIRemoteNotificationTypeAlert;
+        [app registerForRemoteNotificationTypes:types];
+#if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_7_1
+    }
+#endif
+}
+
 @end

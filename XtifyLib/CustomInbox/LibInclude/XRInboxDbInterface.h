@@ -34,7 +34,9 @@
 - (void) setInboxUnreadMessageCount: (int) newCount;
 - (RichDbMessage *) addEmptyMid:(NSString *)pushMid ;
 - (NSString *) getInboxMessagesAsString ;
+- (NSMutableArray *) getInboxMessagesAsJson ;
 - (NSString *) getMessageByMid:(NSString *)mid ;
+- (NSDictionary *) getMessageByMidAsJson:(NSString *)mid ;
 - (id) getDbMessageByMid:(NSString *)mid;
 - (void) removeExpiredMessages; // remove all expired message from data store
 - (NSString *) markMessageAsRead:(NSString *)mid; // mark message as read

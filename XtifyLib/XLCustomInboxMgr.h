@@ -12,6 +12,7 @@
 //
 
 #import <Foundation/Foundation.h>
+@class ASIHTTPRequest;
 
 typedef enum {
     ciNoError = 0,
@@ -32,7 +33,7 @@ typedef enum {
 
 - (void) setCiMessagSelectors:(SEL)aSuccessSelector failSelector:(SEL)aFailureSelector andDelegate:(id)aDelegate;
 - (void) setCiPendingSelectors:(SEL)aSuccessSelector failSelector:(SEL)aFailureSelector andDelegate:(id)aDelegate;
-
+- (void) successPendingMessageMethodCI:(ASIHTTPRequest *) request ;
 // Get a single rich message
 - (void) getCIMessage:(NSString *)mid;
 

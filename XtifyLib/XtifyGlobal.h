@@ -12,14 +12,12 @@
 //
 //
 // For help, visit: http://developer.xtify.com
-//xSdkVer				@"v2.60" // internal xtify sdk version
-
+//xSdkVer				@"v2.73" // internal xtify sdk version
 
 // Xtify AppKey
 //
 // Enter the AppKey assigned to your app at http://console.xtify.com
 // Nothing works without this.
-
 #define xAppKey @"REPLACE_WITH_YOUR_APP_KEY"
 
 //
@@ -53,7 +51,8 @@
 // Set to XLDeveloperManagedMethod if you want to handle updating the badge on the client and server (you'll need to create your own method)
 // We've included an example on how to set/update the badge in the main delegate file within our sample apps
 
-#define xBadgeManagerMethod XLInboxManagedMethod 
+#define xBadgeManagerMethod XLInboxManagedMethod
+//#define xBadgeManagerMethod XLDeveloperManagedMethod
 
 // Logging Flag 
 //
@@ -65,6 +64,17 @@
 // Set to true to let UIRemoteNotificationTypeNewsstandContentAvailability in Apple push registration
 // If set to true, badge count doesn't change from push payload
 #define xNewsstandContent FALSE
+
+// Geofence is a premium feature that supports dynamic regional tracking. This feature will only work with Enterprise accounts. Please inquire with Xtify to enable this feature.
+#define xGeofenceEnabled FALSE
+
+// iBeacon is a premium feature that supports dynamic Apple iBeacon tracking. This feature will only work with Enterprise accounts. Please inquire with Xtify to enable this feature.
+#define xBeaconSupport FALSE
+
+// iBeacon UUID
+// Enter the UUID that you are using with your iBeacons if you want to
+// use iBeacon support
+#define xUUID @"REPLACE_WITH_YOUR_UUID"
 
 // This is a premium feature that supports a regional control of messaging by multiple user governed by one primary organization account. Suitable for organizations that have multiple geographical regions or franchise business models. This feature will only work with Enterprise accounts. Please inquire with Xtify to enable this feature.
 

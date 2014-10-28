@@ -66,6 +66,7 @@
 		1BB9A690166BA726005EBB07 /* CompanyInboxViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB9A686166BA726005EBB07 /* CompanyInboxViewCell.m */; };
 		1BB9A691166BA726005EBB07 /* CompanyInboxViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BB9A687166BA726005EBB07 /* CompanyInboxViewCell.xib */; };
 		1BC6A73E1667DAEE00B9AC9D /* TaggingPreferenceScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC6A73D1667DAEE00B9AC9D /* TaggingPreferenceScreen.m */; };
+		1BD6DE0119A27D1800CF6614 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BD6DE0019A27D1800CF6614 /* CoreBluetooth.framework */; };
 		1BDBA17B14E962D600448614 /* sampleapp.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 1BDBA17A14E962D600448614 /* sampleapp.xcdatamodel */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -194,6 +195,7 @@
 		1BC6A73D1667DAEE00B9AC9D /* TaggingPreferenceScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaggingPreferenceScreen.m; path = SampleRichWithTabs/Support/TaggingPreferenceScreen.m; sourceTree = SOURCE_ROOT; };
 		1BC6A74F1667E7A600B9AC9D /* XRInboxDbInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XRInboxDbInterface.h; sourceTree = "<group>"; };
 		1BC6A7501667E7A600B9AC9D /* XRInboxUiDbDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XRInboxUiDbDelegate.h; sourceTree = "<group>"; };
+		1BD6DE0019A27D1800CF6614 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		1BDBA17A14E962D600448614 /* sampleapp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; name = sampleapp.xcdatamodel; path = SampleRichWithTabs/Support/sampleapp.xcdatamodel; sourceTree = SOURCE_ROOT; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* SampleRichWithTabs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleRichWithTabs.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -238,6 +240,7 @@
 				1B4BBAE0132844A40015E814 /* libz.1.1.3.dylib in Frameworks */,
 				1B4C2DF413327FD000B6FD19 /* MobileCoreServices.framework in Frameworks */,
 				1B27E1E814CDE93100D8B058 /* CoreTelephony.framework in Frameworks */,
+				1BD6DE0119A27D1800CF6614 /* CoreBluetooth.framework in Frameworks */,
 				1B8483F1177DF7BF00D02C4B /* XtifyPushNoDependencies.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -535,6 +538,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1BD6DE0019A27D1800CF6614 /* CoreBluetooth.framework */,
 				1B27E1E714CDE93100D8B058 /* CoreTelephony.framework */,
 				1B4C2DF313327FD000B6FD19 /* MobileCoreServices.framework */,
 				1B7A81A0131C1BFA00BCF75B /* MapKit.framework */,

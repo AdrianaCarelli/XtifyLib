@@ -1,4 +1,4 @@
-platform :ios, '6.0'
+platform :ios, '8.0'
 
 # ignore all warnings from cocoa pods
 inhibit_all_warnings!
@@ -7,16 +7,20 @@ pod 'XtifyLib', :git => 'https://github.com/giladm/XtifyLib.git', :branch => 'ma
 
 post_install do |installer|
     config = <<-XTIFYGLOBAL_H
-#define xAppKey @"123123"
-#define xLocationRequired NO
-#define xRunAlsoInBackground FALSE
-#define xDesiredLocationAccuracy kCLLocationAccuracyKilometer  // kCLLocationAccuracyBest
-#define xBadgeManagerMethod XLInboxManagedMethod
-#define xLogging TRUE
-#define xNewsstandContent FALSE
-#define xMultipleMarkets FALSE
+    #define xAppKey @"<your app key>"
+    #define xLocationRequired NO
+    #define xRunAlsoInBackground FALSE
+    #define xDesiredLocationAccuracy kCLLocationAccuracyKilometer  // kCLLocationAccuracyBest
+    #define xBadgeManagerMethod XLInboxManagedMethod
+    #define xLogging TRUE
+    #define xNewsstandContent FALSE
+    #define xGeofenceEnabled TRUE
+    #define xBeaconSupport FALSE
+    #define xMultipleMarkets FALSE
+    #define xUUID @"REPLACE_WITH_YOUR_UUID"
 XTIFYGLOBAL_H
-    File.open("Pods/XtifyLib/XtifyLib/XtifyGlobal.h", "w") do |file|
-      file.puts config
-    end
+        File.open("Pods/XtifyLib/XtifyLib/XtifyGlobal.h", "w") do |file|
+	      file.puts config
+	end
 end
+```

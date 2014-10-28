@@ -24,6 +24,7 @@
 -(void) updateMessage:(BOOL )value;
 
 - (NSString *) getMessageAsString ;
+- (NSDictionary *) getMessageAsJson ;
 
 @property (nonatomic, retain) NSString * subject;
 @property (nonatomic, retain) NSString * mid;

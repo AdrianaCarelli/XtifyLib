@@ -9,7 +9,7 @@ Example of usage
 Using cocoapods. Podfile:
 
 ```
-platform :ios, '6.0'
+platform :ios, '8.0'
 
 pod 'XtifyLib'
 
@@ -22,7 +22,10 @@ post_install do |installer|
 #define xBadgeManagerMethod XLInboxManagedMethod
 #define xLogging TRUE
 #define xNewsstandContent FALSE
+#define xGeofenceEnabled TRUE
+#define xBeaconSupport FALSE
 #define xMultipleMarkets FALSE
+#define xUUID @"REPLACE_WITH_YOUR_UUID"
 XTIFYGLOBAL_H
     File.open("Pods/XtifyLib/XtifyLib/XtifyGlobal.h", "w") do |file|
       file.puts config

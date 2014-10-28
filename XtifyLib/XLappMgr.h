@@ -100,6 +100,8 @@
 //Notification
 -(void) getPenddingNotifications;
 - (UIViewController *)getInboxViewController ; // allow developer hook the inbox VC
+-(void) saveIncomingNotification:(NSDictionary *)lastNotification ;
+-(NSDictionary *) getIncomingNotification;
 
 // Badge management
 -(NSInteger) getSpringBoardBadgeCount ;
@@ -129,12 +131,12 @@
 // Tags
 - (void)addTag:(NSMutableArray *)tags;
 - (NSString *) getTagString:(NSMutableArray *) tags;
-- (void)doTagRequest:(NSString *) tagUrlString;
+- (void)doTagRequest:(NSURL *) tagUrlString;
 - (void)unTag:(NSMutableArray *)tags;
 - (void)setTag:(NSMutableArray *)tags;
 - (void) getActiveTags;
 - (void)successActiveTagMethod:(xASIHTTPRequest *) request;
-- (void)doActiveTagsRequest:(NSString *) tagString;
+- (void)doActiveTagsRequest:(NSURL *) tagString;
 - (void) didReceiveTagRequest :(NSMutableArray * )anArray ;
 
 
@@ -184,7 +186,7 @@
 @property (nonatomic, assign)	BOOL isInGettingMsgLoop;
 @property (nonatomic, retain) NSTimer* timerBulkUpdate;
 
-//@property (nonatomic, retain) NSDictionary *lastPush;
+@property (nonatomic, retain) NSDictionary *lastPush;
 
 //badge management
 @property (assign, nonatomic) id inboxDelegate;

@@ -19,14 +19,19 @@ typedef enum _XLBadgeManagedType {
     XLDeveloperManagedMethod = 1
 } XLBadgeManagedType ;
 
+#define XTLOG  ([NSString stringWithFormat:@"%s [Line %d] ", __PRETTY_FUNCTION__, __LINE__])
+
 @interface XLXtifyOptions :NSObject
 {
     NSString *xoAppKey;
+    NSString *xoUUID;
+    BOOL    xoBeaconSupport;
     BOOL    xoLocationRequired ;
     BOOL    xoBackgroundLocationRequired ;
     BOOL    xoLogging ;
     BOOL    xoMultipleMarkets;
     BOOL    xoNewsstandContent ;
+    BOOL    xoGeofenceEnabled ;
     XLBadgeManagedType xoManageBadge;
     CLLocationAccuracy xoDesiredLocationAccuracy ;
 }
@@ -39,7 +44,12 @@ typedef enum _XLBadgeManagedType {
 - (BOOL) isLogging ;
 - (BOOL) isMultipleMarkets;
 - (BOOL) isNewsstandContent;
+- (BOOL) isGeofenceEnabled;
+- (BOOL) isBeaconSupportEnabled;
+- (NSString *)getUUID;
 - (XLBadgeManagedType)  getManageBadgeType;
 - (CLLocationAccuracy ) geDesiredLocationAccuracy ;
 - (void)xtLogMessage:(NSString *)header content:(NSString *)message, ...;
+-(void)registerForPush;
 @end
+
